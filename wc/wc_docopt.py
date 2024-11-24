@@ -1,10 +1,10 @@
 """
 This is a Python implementation of the wc command. You can use it to count
-lines, words, or characters in one file. If no option is specified,
+lines, words, or characters in one or more files. If no option is specified,
 it will count lines, words, and characters by default.
 
 Usage:
-    wc [options] <file>
+    wc [options] <file>...
     wc <file>
     wc --help
     wc --version
