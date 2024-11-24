@@ -20,8 +20,54 @@ Options:
 """
 
 from docopt import docopt
+import os
+from typing import Dict, Any
+
+
+def file_exists(filepath: str) -> str:
+    """Check if a file exists.
+
+    Args:
+        filepath (str): The path to the file to validate.
+
+    Returns:
+        str: The validated file path.
+
+    Raises:
+        RuntimeError: If the file does not exist.
+    """
+
+    if not os.path.isfile(filepath):
+        raise RuntimeError(f"The file '{filepath}' does not exist.")
+    return filepath
+
+
+def printConfiguration(args: Dict[str, Any]) -> None:
+    print(args)
+
+    if args['--bytes']:
+        print('Print bytes in file.')
+
+    if args['--chars']:
+        print('Print character in file.')
+
+    if args['--lines']:
+        print('Print number of lines in file.')
+
+    if args['--words']:
+        print('Print number of words in file.')
+
+    if args['--max-line-length']:
+        print('Print maximum length of the line.')
+
+    if not (args['--bytes'] or args['--chars'] or args['--lines'] or args['--words']) and not args['--max-line-length']:
+        print('Print bytes, characters, lines and words!')
+
+
+def main() -> None:
+    arguments = docopt(__doc__)
+    printConfiguration(arguments)
 
 
 if __name__ == '__main__':
-    arguments = docopt(__doc__)
-    print(arguments)
+    main()
